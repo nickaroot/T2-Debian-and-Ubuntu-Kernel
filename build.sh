@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# Скрипт сборки кастомного ядра Debian/Ubuntu для T2 Mac
-# Оптимизирован для полноценной работы OpenStack с поддержкой:
-# - Keystone, Glance, Nova
-# - Ceph, Cinder (блочное хранилище)
-# - Neutron (BGP, STT, ML2, OVS, Kuryr, Cilium, VXLAN, EVPN, IPSec/IKEv2)
-# - Heat, Magnum
-# - Расширенные сетевые возможности для SDN/NFV
-
 set -eu -o pipefail
 
 ### Environment setup

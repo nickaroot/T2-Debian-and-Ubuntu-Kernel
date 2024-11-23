@@ -118,6 +118,34 @@ make olddefconfig
 ./scripts/config --module CONFIG_BT_HCIBCM4377
 ./scripts/config --module CONFIG_APFS_FS
 ./scripts/config --enable CONFIG_MODULE_FORCE_UNLOAD
+./scripts/config --module CONFIG_OPENVSWITCH
+./scripts/config --module CONFIG_OPENVSWITCH_GRE
+./scripts/config --module CONFIG_OPENVSWITCH_VXLAN
+./scripts/config --module CONFIG_OPENVSWITCH_GENEVE
+./scripts/config --module CONFIG_OPENVSWITCH_STT
+./scripts/config --module CONFIG_NET_SCH_INGRESS
+./scripts/config --module CONFIG_NET_ACT_POLICE
+./scripts/config --module CONFIG_NET_ACT_GACT
+./scripts/config --module CONFIG_NETFILTER_XT_TARGET_TEE
+./scripts/config --module CONFIG_NF_CONNTRACK
+./scripts/config --module CONFIG_NF_NAT
+./scripts/config --enable CONFIG_IP_ADVANCED_ROUTER
+./scripts/config --enable CONFIG_IP_MULTIPLE_TABLES
+./scripts/config --enable CONFIG_IP_ROUTE_MULTIPATH
+./scripts/config --module CONFIG_NET_IPGRE
+./scripts/config --module CONFIG_NET_IPGRE_DEMUX
+./scripts/config --module CONFIG_KVM
+./scripts/config --module CONFIG_KVM_INTEL
+./scripts/config --module CONFIG_VHOST_NET
+./scripts/config --module CONFIG_VHOST_SCSI
+./scripts/config --module CONFIG_VHOST
+./scripts/config --module CONFIG_TUN
+./scripts/config --enable CONFIG_NET_RX_BUSY_POLL
+./scripts/config --enable CONFIG_BQL
+./scripts/config --enable CONFIG_NET_FLOW_LIMIT
+./scripts/config --enable CONFIG_NET_DROP_MONITOR
+./scripts/config --enable CONFIG_FTRACE
+./scripts/config --enable CONFIG_FUNCTION_TRACER
 
 # Get rid of the dirty tag
 echo "" >"${KERNEL_PATH}"/.scmversion

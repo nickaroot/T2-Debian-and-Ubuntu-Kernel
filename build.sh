@@ -110,6 +110,181 @@ cp -v "${WORKING_PATH}/templates/default-config-${CONFIG}" "${KERNEL_PATH}/.conf
 ./scripts/config --set-val  DEBUG_INFO_NONE       y
 ./scripts/config --set-val  DEBUG_INFO_DWARF5     n
 
+### Kernel Configuration
+
+# === Base System Features ===
+./scripts/config --enable CONFIG_PREEMPT
+./scripts/config --enable CONFIG_HZ_1000
+./scripts/config --enable CONFIG_HIGH_RES_TIMERS
+./scripts/config --enable CONFIG_MEMCG
+./scripts/config --enable CONFIG_NAMESPACES
+./scripts/config --enable CONFIG_NET_NS
+./scripts/config --enable CONFIG_PID_NS
+./scripts/config --enable CONFIG_IPC_NS
+./scripts/config --enable CONFIG_UTS_NS
+./scripts/config --enable CONFIG_CGROUPS
+./scripts/config --enable CONFIG_KEYS
+./scripts/config --enable CONFIG_KEYS_COMPAT
+
+# === NUMA ===
+./scripts/config --enable CONFIG_NUMA
+./scripts/config --enable CONFIG_NUMA_BALANCING
+./scripts/config --enable CONFIG_NUMA_BALANCING_DEFAULT_ENABLED
+
+# === OpenStack Network Features ===
+# Open vSwitch
+./scripts/config --enable CONFIG_OPENVSWITCH
+./scripts/config --enable CONFIG_OPENVSWITCH_GRE
+./scripts/config --enable CONFIG_OPENVSWITCH_VXLAN
+./scripts/config --enable CONFIG_OPENVSWITCH_GENEVE
+
+# Network Scheduling and QoS
+./scripts/config --enable CONFIG_NET_SCHED
+./scripts/config --enable CONFIG_NET_SCH_HTB
+./scripts/config --enable CONFIG_NET_SCH_FQ
+./scripts/config --enable CONFIG_NET_SCH_FQ_CODEL
+./scripts/config --module CONFIG_NET_SCH_INGRESS
+./scripts/config --module CONFIG_NET_ACT_POLICE
+./scripts/config --module CONFIG_NET_ACT_GACT
+
+# Advanced Networking
+./scripts/config --enable CONFIG_NET_CLS_ACT
+./scripts/config --enable CONFIG_IP_ADVANCED_ROUTER
+./scripts/config --enable CONFIG_IP_MULTIPLE_TABLES
+./scripts/config --enable CONFIG_IP_FIB_TRIE_STATS
+./scripts/config --enable CONFIG_IP_ROUTE_MULTIPATH
+./scripts/config --enable CONFIG_IP_ROUTE_MULTIPATH_CACHED
+
+# Tunneling and Overlay
+./scripts/config --module CONFIG_NET_IPGRE
+./scripts/config --module CONFIG_NET_IPGRE_DEMUX
+./scripts/config --enable CONFIG_OVERLAY_FS
+./scripts/config --enable CONFIG_OVERLAY_FS_REDIRECT_DIR
+./scripts/config --enable CONFIG_OVERLAY_FS_REDIRECT_ALWAYS_FOLLOW
+
+# MPLS Support
+./scripts/config --enable CONFIG_MPLS
+./scripts/config --enable CONFIG_MPLS_ROUTING
+./scripts/config --enable CONFIG_MPLS_IPTUNNEL
+
+# BGP/EVPN Support
+./scripts/config --enable CONFIG_NET_L3_MASTER_DEV
+./scripts/config --enable CONFIG_NET_VRF
+./scripts/config --enable CONFIG_VXLAN
+./scripts/config --enable CONFIG_GENEVE
+
+# Load Balancing
+./scripts/config --module CONFIG_IP_VS
+./scripts/config --module CONFIG_IP_VS_RR
+
+# Network Security
+./scripts/config --module CONFIG_INET_ESP
+./scripts/config --module CONFIG_INET_IPCOMP
+./scripts/config --module CONFIG_XFRM_USER
+./scripts/config --module CONFIG_XFRM_ALGO
+./scripts/config --enable CONFIG_INET_ESP_OFFLOAD
+./scripts/config --enable CONFIG_INET_GRO
+./scripts/config --enable CONFIG_INET6_GRO
+./scripts/config --enable CONFIG_NET_TSO
+
+# Bridge and Netfilter
+./scripts/config --module CONFIG_VLAN_8021Q
+./scripts/config --module CONFIG_BRIDGE
+./scripts/config --module CONFIG_BRIDGE_NETFILTER
+./scripts/config --module CONFIG_NETFILTER_ADVANCED
+./scripts/config --module CONFIG_NETFILTER_XT_MATCH_MULTIPORT
+./scripts/config --module CONFIG_NETFILTER_XT_TARGET_TEE
+./scripts/config --module CONFIG_NF_CONNTRACK
+./scripts/config --module CONFIG_NF_NAT
+
+# Hardware Offloading
+./scripts/config --enable CONFIG_NET_SWITCHDEV
+./scripts/config --enable CONFIG_NET_TC_SKB_EXT
+./scripts/config --enable CONFIG_HSR
+
+# === Cilium/BPF Features ===
+./scripts/config --enable CONFIG_BPF
+./scripts/config --enable CONFIG_BPF_SYSCALL
+./scripts/config --enable CONFIG_BPF_JIT
+./scripts/config --enable CONFIG_HAVE_EBPF_JIT
+./scripts/config --enable CONFIG_BPF_EVENTS
+./scripts/config --enable CONFIG_NETFILTER_XT_MATCH_BPF
+./scripts/config --enable CONFIG_NET_CLS_BPF
+./scripts/config --enable CONFIG_NET_ACT_BPF
+./scripts/config --enable CONFIG_BPF_STREAM_PARSER
+./scripts/config --enable CONFIG_INET_UDP_DIAG
+./scripts/config --enable CONFIG_INET_DIAG_DESTROY
+
+# === Storage Features ===
+# Ceph/RBD
+./scripts/config --module CONFIG_BLK_DEV_RBD
+./scripts/config --module CONFIG_CEPH_LIB
+./scripts/config --enable CONFIG_CEPH_LIB_PRETTYDEBUG
+
+# Device Mapper
+./scripts/config --module CONFIG_DM_MULTIPATH
+./scripts/config --module CONFIG_DM_UEVENT
+
+# === Virtualization Features ===
+./scripts/config --enable CONFIG_KVM
+./scripts/config --enable CONFIG_KVM_INTEL
+./scripts/config --enable CONFIG_KVM_AMD
+./scripts/config --enable CONFIG_KVM_DEVICE_ASSIGNMENT
+./scripts/config --enable CONFIG_VIRTUALIZATION
+./scripts/config --enable CONFIG_VHOST_NET
+./scripts/config --enable CONFIG_VHOST_SCSI
+./scripts/config --enable CONFIG_VHOST
+./scripts/config --enable CONFIG_TUN
+./scripts/config --enable CONFIG_VIRTIO
+./scripts/config --enable CONFIG_VIRTIO_PCI
+./scripts/config --enable CONFIG_VIRTIO_NET
+./scripts/config --enable CONFIG_VIRTIO_BALLOON
+
+# === IOMMU ===
+./scripts/config --enable CONFIG_IOMMU_API
+./scripts/config --enable CONFIG_INTEL_IOMMU
+./scripts/config --enable CONFIG_INTEL_IOMMU_SVM
+./scripts/config --enable CONFIG_INTEL_IOMMU_DEFAULT_ON
+
+# === VFIO ===
+./scripts/config --enable CONFIG_VFIO
+./scripts/config --enable CONFIG_VFIO_GROUP
+./scripts/config --enable CONFIG_VFIO_CONTAINER
+./scripts/config --enable CONFIG_VFIO_IOMMU_TYPE1
+./scripts/config --enable CONFIG_VFIO_VFIO_PCI
+./scripts/config --enable CONFIG_VFIO_PCI
+./scripts/config --enable CONFIG_VFIO_PCI_VGA
+./scripts/config --enable CONFIG_VFIO_MDEV
+
+# === Thunderbolt, USB4 ===
+./scripts/config --enable CONFIG_THUNDERBOLT
+./scripts/config --enable CONFIG_USB4
+./scripts/config --enable CONFIG_USB4_NET
+
+# === Security Features ===
+./scripts/config --module CONFIG_CRYPTO_ECDH
+./scripts/config --module CONFIG_CRYPTO_ECHAINIV
+./scripts/config --module CONFIG_CRYPTO_GCM
+./scripts/config --module CONFIG_CRYPTO_GHASH
+./scripts/config --module CONFIG_CRYPTO_SHA256
+./scripts/config --module CONFIG_CRYPTO_AES
+
+# === Performance Monitoring and Debug ===
+./scripts/config --enable CONFIG_FTRACE
+./scripts/config --enable CONFIG_FTRACE_SYSCALLS
+./scripts/config --enable CONFIG_STACK_TRACER
+./scripts/config --enable CONFIG_FUNCTION_TRACER
+./scripts/config --enable CONFIG_NET_DROP_MONITOR
+./scripts/config --enable CONFIG_KPROBE_EVENTS
+./scripts/config --enable CONFIG_UPROBE_EVENTS
+./scripts/config --enable CONFIG_NET_RX_BUSY_POLL
+./scripts/config --enable CONFIG_BQL
+./scripts/config --enable CONFIG_NET_FLOW_LIMIT
+
+# === Network Performance ===
+./scripts/config --enable CONFIG_TCP_CONG_BBR
+./scripts/config --enable CONFIG_NET_SCH_NETEM
+
 make olddefconfig
 
 # Enable T2 drivers
@@ -124,17 +299,17 @@ make olddefconfig
 echo "" >"${KERNEL_PATH}"/.scmversion
 
 # Build Deb packages
-make -j "$(getconf _NPROCESSORS_ONLN)" deb-pkg LOCALVERSION=-${PKGREL}-t2-"${CODENAME}" KDEB_PKGVERSION="$(make kernelversion)-$(get_next_version)"
+make -j "$(getconf _NPROCESSORS_ONLN)" deb-pkg LOCALVERSION=-${PKGREL}-generic KDEB_PKGVERSION="$(make kernelversion)-$(get_next_version)"
 
 #### Copy artifacts to shared volume
 echo >&2 "===]> Info: Copying debs and calculating SHA256 ... "
-cp -rfv "${KERNEL_PATH}/.config" "/tmp/artifacts/kernel_config_${KERNEL_VERSION}-${CODENAME}"
+cp -rfv "${KERNEL_PATH}/.config" "/tmp/artifacts/kernel_config_${KERNEL_VERSION}-generic"
 cp -rfv ../*.deb /tmp/artifacts/
 
 if [[ (${#KERNEL_VERSION} = 3) || (${#KERNEL_VERSION} = 4) ]]
 then
-mv "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}.0-${PKGREL}_amd64.deb" "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}.0-${PKGREL}-${CODENAME}_amd64.deb"
+mv "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}.0-${PKGREL}_amd64.deb" "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}.0-${PKGREL}-generic_amd64.deb"
 else
-mv "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}-${PKGREL}_amd64.deb" "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}-${PKGREL}-${CODENAME}_amd64.deb"
+mv "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}-${PKGREL}_amd64.deb" "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}-${PKGREL}-generic_amd64.deb"
 fi
-sha256sum ../*.deb >/tmp/artifacts/sha256-"${CODENAME}"
+sha256sum ../*.deb >/tmp/artifacts/sha256-generic

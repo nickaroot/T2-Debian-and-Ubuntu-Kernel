@@ -287,21 +287,21 @@ echo "" > "${KERNEL_PATH}/.scmversion"
 
 ### Build Debian Packages
 echo >&2 "===]> Info: Building kernel packages... "
-make -j "$(getconf _NPROCESSORS_ONLN)" deb-pkg LOCALVERSION=-${PKGREL}-t2-"${CODENAME}" KDEB_PKGVERSION="$(make kernelversion)-$(get_next_version)"
+make -j "$(getconf _NPROCESSORS_ONLN)" deb-pkg LOCALVERSION=-${PKGREL}-generic" KDEB_PKGVERSION="$(make kernelversion)-$(get_next_version)"
 
 ### Copy Artifacts
 echo >&2 "===]> Info: Copying debs and calculating SHA256 ... "
-cp -rfv "${KERNEL_PATH}/.config" "/tmp/artifacts/kernel_config_${KERNEL_VERSION}-${CODENAME}"
+cp -rfv "${KERNEL_PATH}/.config" "/tmp/artifacts/kernel_config_${KERNEL_VERSION}-generic"
 cp -rfv ../*.deb /tmp/artifacts/
 
 # Handle version-specific naming
 if [[ (${#KERNEL_VERSION} = 3) || (${#KERNEL_VERSION} = 4) ]]; then
-    mv "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}.0-${PKGREL}_amd64.deb" "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}.0-${PKGREL}-${CODENAME}_amd64.deb"
+    mv "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}.0-${PKGREL}_amd64.deb" "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}.0-${PKGREL}-generic_amd64.deb"
 else
-    mv "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}-${PKGREL}_amd64.deb" "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}-${PKGREL}-${CODENAME}_amd64.deb"
+    mv "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}-${PKGREL}_amd64.deb" "/tmp/artifacts/linux-libc-dev_${KERNEL_VERSION}-${PKGREL}-generic_amd64.deb"
 fi
 
 # Generate checksums
-sha256sum ../*.deb > /tmp/artifacts/sha256-"${CODENAME}"
+sha256sum ../*.deb > /tmp/artifacts/sha256-generic"
 
 echo >&2 "===]> Build completed successfully!"

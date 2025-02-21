@@ -287,7 +287,7 @@ echo "" > "${KERNEL_PATH}/.scmversion"
 
 ### Build Debian Packages
 echo >&2 "===]> Info: Building kernel packages... "
-make -j "$(getconf _NPROCESSORS_ONLN)" deb-pkg LOCALVERSION=-${PKGREL}-generic" KDEB_PKGVERSION="$(make kernelversion)-$(get_next_version)"
+make -j "$(getconf _NPROCESSORS_ONLN)" deb-pkg LOCALVERSION=-${PKGREL}-generic KDEB_PKGVERSION="$(make kernelversion)-$(get_next_version)"
 
 ### Copy Artifacts
 echo >&2 "===]> Info: Copying debs and calculating SHA256 ... "

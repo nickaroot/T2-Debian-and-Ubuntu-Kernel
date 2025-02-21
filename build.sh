@@ -23,7 +23,7 @@ get_next_version () {
 apt-get update
 apt-get install -y lsb-release
 
-KERNEL_VERSION=6.13.3
+KERNEL_VERSION=6.13.4
 PKGREL=1
 DISTRO=$(lsb_release -i | cut -d ":" -f 2 | xargs)
 CODENAME=$(lsb_release -c | cut -d ":" -f 2 | xargs)

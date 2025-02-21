@@ -113,12 +113,17 @@ cp -v "${WORKING_PATH}/templates/default-config-${CONFIG}" "${KERNEL_PATH}/.conf
 ./scripts/config --enable CONFIG_KEYS
 ./scripts/config --enable CONFIG_KEYS_COMPAT
 
+# === NUMA ===
+./scripts/config --enable CONFIG_NUMA
+./scripts/config --enable CONFIG_NUMA_BALANCING
+./scripts/config --enable CONFIG_NUMA_BALANCING_DEFAULT_ENABLED
+
 # === OpenStack Network Features ===
 # Open vSwitch
-./scripts/config --module CONFIG_OPENVSWITCH
-./scripts/config --module CONFIG_OPENVSWITCH_GRE
-./scripts/config --module CONFIG_OPENVSWITCH_VXLAN
-./scripts/config --module CONFIG_OPENVSWITCH_GENEVE
+./scripts/config --enable CONFIG_OPENVSWITCH
+./scripts/config --enable CONFIG_OPENVSWITCH_GRE
+./scripts/config --enable CONFIG_OPENVSWITCH_VXLAN
+./scripts/config --enable CONFIG_OPENVSWITCH_GENEVE
 
 # Network Scheduling and QoS
 ./scripts/config --enable CONFIG_NET_SCHED
@@ -152,7 +157,8 @@ cp -v "${WORKING_PATH}/templates/default-config-${CONFIG}" "${KERNEL_PATH}/.conf
 # BGP/EVPN Support
 ./scripts/config --enable CONFIG_NET_L3_MASTER_DEV
 ./scripts/config --enable CONFIG_NET_VRF
-./scripts/config --enable CONFIG_VXLAN_GBP
+./scripts/config --enable CONFIG_VXLAN
+./scripts/config --enable CONFIG_GENEVE
 
 # Load Balancing
 ./scripts/config --module CONFIG_IP_VS
@@ -169,6 +175,7 @@ cp -v "${WORKING_PATH}/templates/default-config-${CONFIG}" "${KERNEL_PATH}/.conf
 ./scripts/config --enable CONFIG_NET_TSO
 
 # Bridge and Netfilter
+./scripts/config --module CONFIG_VLAN_8021Q
 ./scripts/config --module CONFIG_BRIDGE
 ./scripts/config --module CONFIG_BRIDGE_NETFILTER
 ./scripts/config --module CONFIG_NETFILTER_ADVANCED
@@ -206,13 +213,40 @@ cp -v "${WORKING_PATH}/templates/default-config-${CONFIG}" "${KERNEL_PATH}/.conf
 ./scripts/config --module CONFIG_DM_UEVENT
 
 # === Virtualization Features ===
-./scripts/config --module CONFIG_KVM
-./scripts/config --module CONFIG_KVM_INTEL
+./scripts/config --enable CONFIG_KVM
+./scripts/config --enable CONFIG_KVM_INTEL
+./scripts/config --enable CONFIG_KVM_AMD
+./scripts/config --enable CONFIG_KVM_DEVICE_ASSIGNMENT
 ./scripts/config --enable CONFIG_VIRTUALIZATION
-./scripts/config --module CONFIG_VHOST_NET
-./scripts/config --module CONFIG_VHOST_SCSI
-./scripts/config --module CONFIG_VHOST
-./scripts/config --module CONFIG_TUN
+./scripts/config --enable CONFIG_VHOST_NET
+./scripts/config --enable CONFIG_VHOST_SCSI
+./scripts/config --enable CONFIG_VHOST
+./scripts/config --enable CONFIG_TUN
+./scripts/config --enable CONFIG_VIRTIO
+./scripts/config --enable CONFIG_VIRTIO_PCI
+./scripts/config --enable CONFIG_VIRTIO_NET
+./scripts/config --enable CONFIG_VIRTIO_BALLOON
+
+# === IOMMU ===
+./scripts/config --enable CONFIG_IOMMU_API
+./scripts/config --enable CONFIG_INTEL_IOMMU
+./scripts/config --enable CONFIG_INTEL_IOMMU_SVM
+./scripts/config --enable CONFIG_INTEL_IOMMU_DEFAULT_ON
+
+# === VFIO ===
+./scripts/config --enable CONFIG_VFIO
+./scripts/config --enable CONFIG_VFIO_GROUP
+./scripts/config --enable CONFIG_VFIO_CONTAINER
+./scripts/config --enable CONFIG_VFIO_IOMMU_TYPE1
+./scripts/config --enable CONFIG_VFIO_VFIO_PCI
+./scripts/config --enable CONFIG_VFIO_PCI
+./scripts/config --enable CONFIG_VFIO_PCI_VGA
+./scripts/config --enable CONFIG_VFIO_MDEV
+
+# === Thunderbolt, USB4 ===
+./scripts/config --enable CONFIG_THUNDERBOLT
+./scripts/config --enable CONFIG_USB4
+./scripts/config --enable CONFIG_USB4_NET
 
 # === Security Features ===
 ./scripts/config --module CONFIG_CRYPTO_ECDH

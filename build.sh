@@ -12,7 +12,7 @@ apt-get install -y lsb-release
 KERNEL_VERSION=6.8.12
 PKGREL=1
 DISTRO=$(lsb_release -i | cut -d ":" -f 2 | xargs)
-CODENAME=$(lsb_release -c | cut -d ":" -f 2 | xargs)
+#CODENAME=$(lsb_release -c | cut -d ":" -f 2 | xargs)
 
 if [[ ${DISTRO} = Debian ]]
 then
